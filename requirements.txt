@@ -1,0 +1,8 @@
+# Cross-platform dependencies — needed on both the dev machine and the
+# Snapdragon target.
+
+numpy>=1.24
+PyYAML>=6.0
+sounddevice>=0.4.6      # microphone / system-audio capture (PortAudio-backed)
+faster-whisper>=1.0.0   # CPU fallback ASR engine, used for local dev/testing
+soundfile>=0.12.1       # reading/writing wav files (used by benchmark.py and tests)

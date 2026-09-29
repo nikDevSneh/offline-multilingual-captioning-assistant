@@ -1,0 +1,36 @@
+# Offline Multilingual Captioning & Transcription Assistant — runtime config
+
+audio:
+  sample_rate: 16000          # Whisper expects 16kHz mono
+  channels: 1
+  chunk_seconds: 4.0          # length of each audio window sent to the ASR engine
+  chunk_overlap_seconds: 1.0  # overlap between consecutive windows, to avoid cutting words
+  input_device: 1          # null = system default input device; or an integer device index
+
+asr:
+  engine: "cpu_dev"           # "cpu_dev" (development) or "qnn" (Snapdragon NPU)
+  model_dir: "models/whisper_small_quantized"   # only used by the qnn engine
+  cpu_model_size: "base"     # faster-whisper model size for the dev engine: tiny/base/small/medium
+  language: "auto"            # "auto" | "hi" | "en" — Whisper auto-detects code-switching reasonably well
+
+translation:
+  enabled: false
+  source_lang: "hi"
+  target_lang: "en"
+  # Any small, locally-runnable translation model. Left disabled by default
+  # since it adds a second model load; enable once the core pipeline is verified.
+  model_name: "facebook/nllb-200-distilled-600M"
+
+overlay:
+  font_size: 26
+  max_lines: 3
+  position: "bottom"          # "bottom" | "top"
+  width_fraction: 0.8         # caption window width as a fraction of screen width
+  opacity: 0.85
+  background_color: "#0B2545"
+  text_color: "#FFFFFF"
+
+transcript:
+  export_dir: "transcripts"
+  formats: ["txt", "srt"]
+  session_prefix: "session"

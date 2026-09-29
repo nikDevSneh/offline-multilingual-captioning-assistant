@@ -1,0 +1,12 @@
+# Extra dependencies for running on a Snapdragon-powered HP PC (the NPU path).
+# Install these ONLY on the Snapdragon target, after requirements.txt.
+#
+# IMPORTANT: only 64-bit (AMDx64) Python is supported for qai_hub_models on
+# Windows-on-Snapdragon. Installation fails under Windows ARM64 Python.
+
+qai_hub_models
+onnxruntime-qnn        # ONNX Runtime build with the Qualcomm QNN execution provider
+
+# Optional, only if you enable the translation layer:
+transformers>=4.40
+sentencepiece
